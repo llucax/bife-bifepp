@@ -2,7 +2,7 @@
 CPPFLAGS=-g3 -Wall -DDEBUG
 #CPPFLAGS=-O3 -Wall
 
-TAGETS=hit.o ghit.o chit.o widget.o container.o fallback.o string.o
+TAGETS=hit.o ghit.o chit.o widget.o container.o fallback.o string.o translate.o
 
 all: main
 
