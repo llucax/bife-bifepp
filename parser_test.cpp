@@ -27,6 +27,9 @@ int main(int argc, char* argv[]) {
     } catch (exception e) {
         cerr << "Error: " << e.what() << endl;
         return 1;
+    } catch (string e) {
+        cerr << "Error: " << e << endl;
+        return 2;
     }
     return 0;
 }

@@ -10,6 +10,10 @@
 #include <string>
 #include <stack>
 
+// FIXME - Poner esto en un lugar más bonito.
+typedef bife::Widget* create_t(const std::string& name, const bife::Hash&);
+typedef void destroy_t(bife::Widget*);
+
 namespace bife {
 
     using std::string;
@@ -30,6 +34,9 @@ namespace bife {
             WidgetStack stack;
 
             // TODO Fallback.
+            create_t* fb_create;
+            destroy_t* fb_destroy;
+
         public:
             /// Widget attributes.
             Widget* root;

@@ -1,11 +1,12 @@
 // vim: set expandtab tabstop=4 shiftwidth=4:
 
-// FIXME - ver tema de fallback.
-#include "translate.h"
-
+#include "widget.h"
+#include "container.h"
+#include "fallback.h"
 #include "string.h"
 #include "parser.h"
 #include <sstream>
+#include <dlfcn.h>
 
 using std::stringstream;
 using namespace bife;
@@ -41,7 +42,7 @@ void Parser::on_start_element(const string& name, const AttributeMap& attrs) {
     }
     cerr  << "]);" << endl;
 #endif
-    stack.push(new Translate(name, attrs));
+    stack.push(fb_create(name, attrs));
 }
 
 void Parser::on_end_element(const string& name) {
@@ -121,10 +122,19 @@ void Parser::on_validity_warning(const string& warn) {
 #endif
 }
 
-Parser::Parser(void): root(NULL) {
+Parser::Parser(void): fb_create(NULL), fb_destroy(NULL), root(NULL) {
 #ifdef DEBUG
     cerr << "In Parser::Parser();" << endl;
 #endif
+    void* fb = dlopen("./translate.so", RTLD_NOW | RTLD_GLOBAL); // TODO - mas rapido: RTLD_LAZY);
+    if (!fb) {
+        throw string("No se puede cargar el plug-in: ") + dlerror();
+    }
+    fb_create  = (create_t*)dlsym(fb, "create");
+    fb_destroy = (destroy_t*)dlsym(fb, "destroy");
+    if (!fb_create || !fb_destroy) {
+        throw string("No se puede cargar el creador del plug-in: ") + dlerror();
+    }
 }
 
 //Parser::Parser(const Hash& attrs): attrs(attrs) {
