@@ -49,7 +49,7 @@ namespace bife {
              * @param attrs   Widget attributes.
              * @param content Content of the widget.
              */
-            Fallback(const string&, const Hash&, Widget&);
+            Fallback(const string&, const Hash&, Widget*);
 
             /**
              * Constructor.
@@ -57,7 +57,7 @@ namespace bife {
              * @param name    Name of the widget.
              * @param content Content of the widget.
              */
-            Fallback(const string&, Widget&);
+            Fallback(const string&, Widget*);
 
             /**
              * Constructor.
@@ -66,7 +66,7 @@ namespace bife {
              * @param content Content of the widget.
              * @param attrs   Widget attributes.
              */
-            Fallback(const string&, Widget&, const Hash&);
+            Fallback(const string&, Widget*, const Hash&);
 
             /**
              * Destructor.

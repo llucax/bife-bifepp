@@ -21,7 +21,7 @@ namespace bife {
     class Container: public Widget {
         // Typedefs
         protected:
-            typedef std::vector<Widget> Content;
+            typedef std::vector<Widget*> Content;
 
         // Attributes.
         protected:
@@ -48,7 +48,7 @@ namespace bife {
              * @param attrs   Widget attributes.
              * @param content Content of the widget.
              */
-            Container(const Hash&, Widget&);
+            Container(const Hash&, Widget*);
 
             /**
              * Constructor.
@@ -56,7 +56,7 @@ namespace bife {
              * @param content Content of the widget.
              * @param attrs   Widget attributes.
              */
-            Container(Widget&, const Hash&);
+            Container(Widget*, const Hash&);
 
             /**
              * Destructor.
@@ -70,6 +70,13 @@ namespace bife {
              * @return Rendered widget.
              */
             virtual string renderContent(HIT&);
+
+            /**
+             * Appends a widget to the container.
+             *
+             * @param widget Widget to append.
+             */
+            virtual void append(Widget*);
     };
 
 }

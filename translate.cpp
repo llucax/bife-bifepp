@@ -25,7 +25,7 @@ Translate::Translate(const string& name, const Hash& attrs): Fallback(name, attr
 #endif
 }
 
-Translate::Translate(const string& name, const Hash& attrs, Widget& content):
+Translate::Translate(const string& name, const Hash& attrs, Widget* content):
         Fallback(name, attrs, content) {
     // FIXME - this->content.push_back(content);
 #ifdef DEBUG
@@ -35,7 +35,7 @@ Translate::Translate(const string& name, const Hash& attrs, Widget& content):
 #endif
 }
 
-Translate::Translate(const string& name, Widget& content, const Hash& attrs):
+Translate::Translate(const string& name, Widget* content, const Hash& attrs):
         Fallback(name, content, attrs) {
     // FIXME - this->content.push_back(content);
 #ifdef DEBUG

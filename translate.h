@@ -44,7 +44,7 @@ namespace bife {
              * @param attrs   Widget attributes.
              * @param content Content of the widget.
              */
-            Translate(const string&, const Hash&, Widget&);
+            Translate(const string&, const Hash&, Widget*);
 
             /**
              * Constructor.
@@ -52,7 +52,7 @@ namespace bife {
              * @param name    Name of the widget.
              * @param content Content of the widget.
              */
-            Translate(const string&, Widget&);
+            Translate(const string&, Widget*);
 
             /**
              * Constructor.
@@ -61,7 +61,7 @@ namespace bife {
              * @param content Content of the widget.
              * @param attrs   Widget attributes.
              */
-            Translate(const string&, Widget&, const Hash&);
+            Translate(const string&, Widget*, const Hash&);
 
             /**
              * Destructor.

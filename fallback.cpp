@@ -26,7 +26,7 @@ Fallback::Fallback(const string& name, const Hash& attrs):
 #endif
 }
 
-Fallback::Fallback(const string& name, const Hash& attrs, Widget& content):
+Fallback::Fallback(const string& name, const Hash& attrs, Widget* content):
         Container(attrs, content), name(name) {
     // FIXME - this->content.push_back(content);
 #ifdef DEBUG
@@ -36,7 +36,7 @@ Fallback::Fallback(const string& name, const Hash& attrs, Widget& content):
 #endif
 }
 
-Fallback::Fallback(const string& name, Widget& content, const Hash& attrs):
+Fallback::Fallback(const string& name, Widget* content, const Hash& attrs):
         Container(content, attrs), name(name) {
     // FIXME - this->content.push_back(content);
 #ifdef DEBUG

@@ -24,7 +24,7 @@ Container::Container(const Hash& attrs): Widget(attrs) {
 #endif
 }
 
-Container::Container(const Hash& attrs, Widget& content): Widget(attrs) {
+Container::Container(const Hash& attrs, Widget* content): Widget(attrs) {
     // FIXME - this->content.push_back(content);
 #ifdef DEBUG
     cerr << "In Container::Container(attrs = {" /* TODO << attrs */
@@ -32,7 +32,7 @@ Container::Container(const Hash& attrs, Widget& content): Widget(attrs) {
 #endif
 }
 
-Container::Container(Widget& content, const Hash& attrs): Widget(attrs) {
+Container::Container(Widget* content, const Hash& attrs): Widget(attrs) {
     // FIXME - this->content.push_back(content);
 #ifdef DEBUG
     cerr << "In Container::Container(content = {" /* TODO << content */
@@ -63,7 +63,11 @@ string Container::render(HIT& hit) {
 string Container::renderContent(HIT& hit) {
     stringstream out;
     for (Content::iterator i = content.begin(); i != content.end(); i++) {
-        out << i->render(hit);
+        out << (*i)->render(hit);
     }
     return out.str();
+}
+
+void Container::append(Widget* widget) {
+    content.push_back(widget);
 }
