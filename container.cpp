@@ -18,13 +18,13 @@ Container::Container(void) {
 #endif
 }
 
-Container::Container(Hash attrs): Widget(attrs) {
+Container::Container(const Hash& attrs): Widget(attrs) {
 #ifdef DEBUG
     cerr << "In Container::Container(attrs = {" /* TODO << attrs */ << "});" << endl;
 #endif
 }
 
-Container::Container(Hash attrs, Widget& content): Widget(attrs) {
+Container::Container(const Hash& attrs, Widget& content): Widget(attrs) {
     // FIXME - this->content.push_back(content);
 #ifdef DEBUG
     cerr << "In Container::Container(attrs = {" /* TODO << attrs */
@@ -32,7 +32,7 @@ Container::Container(Hash attrs, Widget& content): Widget(attrs) {
 #endif
 }
 
-Container::Container(Widget& content, Hash attrs): Widget(attrs) {
+Container::Container(Widget& content, const Hash& attrs): Widget(attrs) {
     // FIXME - this->content.push_back(content);
 #ifdef DEBUG
     cerr << "In Container::Container(content = {" /* TODO << content */

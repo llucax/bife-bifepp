@@ -37,7 +37,7 @@ namespace bife {
              * @param  blockname Name of the block to get the filename.
              * @return Block's filename.
              */
-            virtual string getFileName(string);
+            virtual string getFileName(const string&);
 
             /**
              * Gets file content.
@@ -45,7 +45,7 @@ namespace bife {
              * @param  filename Name of the file to get the content.
              * @return File content.
              */
-            virtual string getFileContent(string);
+            virtual string getFileContent(const string&);
 
         public:
             /**
@@ -54,7 +54,7 @@ namespace bife {
              * @param root    Root directory from where to get the templates.
              * @param postfix Postfix of the template files.
              */
-            HIT(string = string("."), string = string(".tpl"));
+            HIT(const string& = string("."), const string& = string(".tpl"));
 
             /**
              * Destructor.
@@ -68,7 +68,7 @@ namespace bife {
              * @param  vars      Hash containing the variable names and their values.
              * @return Parsed block with variables replaced.
              */
-            string parse(string, Hash&);
+            string parse(const string&, Hash&);
     };
 
 }

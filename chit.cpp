@@ -10,7 +10,8 @@ using std::cerr;
 using std::endl;
 #endif
 
-CHIT::CHIT(string root, string postfix, string group): GHIT(root, postfix, group) {
+CHIT::CHIT(const string& root, const string& postfix, const string& group):
+        GHIT(root, postfix, group) {
 #ifdef DEBUG
     cerr << "In CHIT::CHIT(root = '" << root << "', postfix = '" << postfix
         << "', group = '" << group << "');" << endl;
@@ -23,7 +24,7 @@ CHIT::~CHIT(void) {
 #endif
 }
 
-string CHIT::getFileContent(string filename) {
+string CHIT::getFileContent(const string& filename) {
     Hash::iterator c = cache.find(filename);
     if (c == cache.end()) {
         cache[filename] = GHIT::getFileContent(filename);

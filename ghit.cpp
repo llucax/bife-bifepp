@@ -10,7 +10,8 @@ using std::cerr;
 using std::endl;
 #endif
 
-GHIT::GHIT(string root, string postfix, string group): HIT(root, postfix) {
+GHIT::GHIT(const string& root, const string& postfix, const string& group):
+        HIT(root, postfix) {
 #ifdef DEBUG
     cerr << "In GHIT::GHIT(root = '" << root << "', postfix = '" << postfix
         << "', group = '" << group << "');" << endl;
@@ -24,11 +25,11 @@ GHIT::~GHIT(void) {
 #endif
 }
 
-string GHIT::getFileName(string blockname) {
+string GHIT::getFileName(const string& blockname) {
     return string(root + '/' + group.top() + '/' + blockname + postfix);
 }
 
-void GHIT::pushGroup(string group) {
+void GHIT::pushGroup(const string& group) {
     this->group.push(group);
 }
 

@@ -14,7 +14,7 @@ using std::cerr;
 using std::endl;
 #endif
 
-HIT::HIT(string root, string postfix): root(root), postfix(postfix) {
+HIT::HIT(const string& root, const string& postfix): root(root), postfix(postfix) {
 #ifdef DEBUG
     cerr << "In HIT::HIT(root = '" << root << "', postfix = '" << postfix << "')" << endl;
 #endif
@@ -26,11 +26,11 @@ HIT::~HIT(void) {
 #endif
 }
 
-string HIT::getFileName(string blockname) {
+string HIT::getFileName(const string& blockname) {
     return string(root + '/' + blockname + postfix);
 }
 
-string HIT::getFileContent(string filename) {
+string HIT::getFileContent(const string& filename) {
     stringbuf buff;
     ifstream in(filename.c_str());
     // FIXME - Verificar apertura.
@@ -47,7 +47,7 @@ string HIT::getFileContent(string filename) {
     return buff.str();
 }
 
-string HIT::parse(string blockname, Hash& vars) {
+string HIT::parse(const string& blockname, Hash& vars) {
     int pos;
     string key;
     string content = getFileContent(getFileName(blockname));

@@ -40,7 +40,7 @@ namespace bife {
              *
              * @param attrs Widget attributes.
              */
-            Container(Hash);
+            Container(const Hash&);
 
             /**
              * Constructor.
@@ -48,7 +48,7 @@ namespace bife {
              * @param attrs   Widget attributes.
              * @param content Content of the widget.
              */
-            Container(Hash, Widget&);
+            Container(const Hash&, Widget&);
 
             /**
              * Constructor.
@@ -56,7 +56,7 @@ namespace bife {
              * @param content Content of the widget.
              * @param attrs   Widget attributes.
              */
-            Container(Widget&, Hash);
+            Container(Widget&, const Hash&);
 
             /**
              * Destructor.
@@ -69,15 +69,7 @@ namespace bife {
              * @param  hit HIT template to use to render de widget.
              * @return Rendered widget.
              */
-            virtual string render(HIT&) = 0;
-
-            /**
-             * Renders the widget using a HIT template.
-             *
-             * @param  hit HIT template to use to render de widget.
-             * @return Rendered widget.
-             */
-            string renderContent(HIT&);
+            virtual string renderContent(HIT&);
     };
 
 }

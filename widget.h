@@ -34,7 +34,7 @@ namespace bife {
              *
              * @param attrs Widget attributes.
              */
-            Widget(Hash);
+            Widget(const Hash&);
 
             /**
              * Destructor.

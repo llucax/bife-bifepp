@@ -35,7 +35,7 @@ namespace bife {
              * @param  filename Name of the file to get the content.
              * @return File content.
              */
-            virtual string getFileContent(string);
+            virtual string getFileContent(const string&);
 
         public:
             /**
@@ -45,7 +45,8 @@ namespace bife {
              * @param postfix Postfix of the template files.
              * @param group   Starting group.
              */
-            CHIT(string = string("."), string = string(".tpl"), string = string(""));
+            CHIT(const string& = string("."), const string& = string(".tpl"),
+                    const string& = string(""));
 
             /**
              * Destructor.

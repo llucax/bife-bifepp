@@ -12,21 +12,22 @@ using std::cerr;
 using std::endl;
 #endif
 
-Fallback::Fallback(string name) {
-    root = NULL;
+Fallback::Fallback(const string& name): name(name) {
 #ifdef DEBUG
     cerr << "In Fallback::Fallback(name = '" << name << "');" << endl;
 #endif
 }
 
-Fallback::Fallback(string name, Hash attrs): Container(attrs) {
+Fallback::Fallback(const string& name, const Hash& attrs):
+        Container(attrs), name(name) {
 #ifdef DEBUG
     cerr << "In Fallback::Fallback(name = '" << name
         << "', attrs = {" /* TODO << attrs */ << "});" << endl;
 #endif
 }
 
-Fallback::Fallback(string name, Hash attrs, Widget& content): Container(attrs) {
+Fallback::Fallback(const string& name, const Hash& attrs, Widget& content):
+        Container(attrs, content), name(name) {
     // FIXME - this->content.push_back(content);
 #ifdef DEBUG
     cerr << "In Fallback::Fallback(name = '" << name
@@ -35,7 +36,8 @@ Fallback::Fallback(string name, Hash attrs, Widget& content): Container(attrs) {
 #endif
 }
 
-Fallback::Fallback(string name, Widget& content, Hash attrs): Container(attrs) {
+Fallback::Fallback(const string& name, Widget& content, const Hash& attrs):
+        Container(content, attrs), name(name) {
     // FIXME - this->content.push_back(content);
 #ifdef DEBUG
     cerr << "In Fallback::Fallback(name = '" << name

@@ -18,7 +18,7 @@ Widget::Widget(void) {
 #endif
 }
 
-Widget::Widget(Hash attrs): attrs(attrs) {
+Widget::Widget(const Hash& attrs): attrs(attrs) {
 #ifdef DEBUG
     cerr << "In Widget::Widget(attrs = {" /* TODO << attrs */ << "});" << endl;
 #endif

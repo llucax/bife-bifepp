@@ -38,7 +38,7 @@ namespace bife {
              * @param  blockname Name of the block to get the filename.
              * @return Block's filename.
              */
-            virtual string getFileName(string);
+            virtual string getFileName(const string&);
 
         public:
             /**
@@ -48,7 +48,8 @@ namespace bife {
              * @param postfix Postfix of the template files.
              * @param group   Starting group.
              */
-            GHIT(string = string("."), string = string(".tpl"), string = string(""));
+            GHIT(const string& = string("."), const string& = string(".tpl"),
+                    const string& = string(""));
 
             /**
              * Destructor.
@@ -60,7 +61,7 @@ namespace bife {
              *
              * @param group Group of templates to work with.
              */
-            virtual void pushGroup(string);
+            virtual void pushGroup(const string&);
 
             /**
              * Stops working with a group of templates.

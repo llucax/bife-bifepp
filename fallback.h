@@ -21,9 +21,9 @@ namespace bife {
      */
     class Fallback: public Container {
         // Attributes.
-        protected:
+        public:
             /// Root widget.
-            Widget* root;
+            string name;
 
         // Methods.
         public:
@@ -32,7 +32,7 @@ namespace bife {
              *
              * @param name    Name of the widget.
              */
-            Fallback(string);
+            Fallback(const string&);
 
             /**
              * Constructor.
@@ -40,7 +40,7 @@ namespace bife {
              * @param name    Name of the widget.
              * @param attrs   Widget attributes.
              */
-            Fallback(string, Hash);
+            Fallback(const string&, const Hash&);
 
             /**
              * Constructor.
@@ -49,7 +49,7 @@ namespace bife {
              * @param attrs   Widget attributes.
              * @param content Content of the widget.
              */
-            Fallback(string, Hash, Widget&);
+            Fallback(const string&, const Hash&, Widget&);
 
             /**
              * Constructor.
@@ -57,7 +57,7 @@ namespace bife {
              * @param name    Name of the widget.
              * @param content Content of the widget.
              */
-            Fallback(string, Widget&);
+            Fallback(const string&, Widget&);
 
             /**
              * Constructor.
@@ -66,20 +66,12 @@ namespace bife {
              * @param content Content of the widget.
              * @param attrs   Widget attributes.
              */
-            Fallback(string, Widget&, Hash);
+            Fallback(const string&, Widget&, const Hash&);
 
             /**
              * Destructor.
              */
             virtual ~Fallback(void);
-
-            /**
-             * Renders the widget using a HIT template.
-             *
-             * @param  hit HIT template to use to render de widget.
-             * @return Rendered widget.
-             */
-            virtual string render(HIT&) = 0;
     };
 
 }
