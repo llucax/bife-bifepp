@@ -28,7 +28,14 @@ namespace bife {
             /**
              * Constructor.
              *
-             * @param attrs String attributes.
+             * @param str String.
+             */
+            String(const string&);
+
+            /**
+             * Constructor.
+             *
+             * @param str String.
              */
             String(const char*);
 

@@ -18,6 +18,12 @@ String::String(void) {
 #endif
 }*/
 
+String::String(const string& str): string(str) {
+#ifdef DEBUG
+    cerr << "In String::String('" << str << "')." << endl;
+#endif
+}
+
 String::String(const char* str): string(str) {
 #ifdef DEBUG
     cerr << "In String::String('" << str << "')." << endl;
