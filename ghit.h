@@ -7,72 +7,76 @@
 #include <stack>
 #include <string>
 
-using std::string;
+namespace bife {
 
-/**
- * Group enabled HIT.
- *
- * HIT template with groups of templates added. You can specify a template
- * group. The group is used as a subdirectory in root template directory, so you
- * can group templates together. The default group ('') templates are stored in
- * the root directory.
- */
-class GHIT: public HIT {
-    // Typedefs.
-    protected:
-        /// Group stack.
-        typedef std::stack<string> GroupStack;
+    using std::string;
 
-    // Attributes.
-    protected:
-        /// Group stack.
-        GroupStack group;
+    /**
+     * Group enabled HIT.
+     *
+     * HIT template with groups of templates added. You can specify a template
+     * group. The group is used as a subdirectory in root template directory, so you
+     * can group templates together. The default group ('') templates are stored in
+     * the root directory.
+     */
+    class GHIT: public HIT {
+        // Typedefs.
+        protected:
+            /// Group stack.
+            typedef std::stack<string> GroupStack;
 
-    // Methods.
-    protected:
-        /**
-         * Gets file name based on the blockname and the group.
-         *
-         * @param  blockname Name of the block to get the filename.
-         * @return Block's filename.
-         */
-        virtual string getFileName(string);
+        // Attributes.
+        protected:
+            /// Group stack.
+            GroupStack group;
 
-    public:
-        /**
-         * Constructor.
-         *
-         * @param root    Root directory from where to get the templates.
-         * @param postfix Postfix of the template files.
-         * @param group   Starting group.
-         */
-        GHIT(string = string("."), string = string(".tpl"), string = string(""));
+        // Methods.
+        protected:
+            /**
+             * Gets file name based on the blockname and the group.
+             *
+             * @param  blockname Name of the block to get the filename.
+             * @return Block's filename.
+             */
+            virtual string getFileName(string);
 
-        /**
-         * Destructor.
-         */
-        virtual ~GHIT(void);
+        public:
+            /**
+             * Constructor.
+             *
+             * @param root    Root directory from where to get the templates.
+             * @param postfix Postfix of the template files.
+             * @param group   Starting group.
+             */
+            GHIT(string = string("."), string = string(".tpl"), string = string(""));
 
-        /**
-         * Starts working with a new group of templates.
-         *
-         * @param group Group of templates to work with.
-         */
-        virtual void pushGroup(string);
+            /**
+             * Destructor.
+             */
+            virtual ~GHIT(void);
 
-        /**
-         * Stops working with a group of templates.
-         *
-         * @return Last template's group used.
-         */
-        virtual string popGroup(void);
+            /**
+             * Starts working with a new group of templates.
+             *
+             * @param group Group of templates to work with.
+             */
+            virtual void pushGroup(string);
 
-        /**
-         * Gets the current working group.
-         *
-         * @return Current template's group.
-         */
-        virtual string getGroup(void);
-};
+            /**
+             * Stops working with a group of templates.
+             *
+             * @return Last template's group used.
+             */
+            virtual string popGroup(void);
+
+            /**
+             * Gets the current working group.
+             *
+             * @return Current template's group.
+             */
+            virtual string getGroup(void);
+    };
+
+}
 
 #endif

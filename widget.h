@@ -7,53 +7,57 @@
 #include "hash.h"
 #include <string>
 
-using std::string;
+namespace bife {
 
-/**
- * Base Widget Class.
- *
- * @todo 
- */
-class Widget {
-    // Attributes.
-    public:
-        /// Widget attributes.
-        Hash attrs;
+    using std::string;
 
-    // Methods.
-    public:
-        /**
-         * Constructor.
-         */
-        Widget(void);
+    /**
+     * Base Widget Class.
+     *
+     * @todo 
+     */
+    class Widget {
+        // Attributes.
+        public:
+            /// Widget attributes.
+            Hash attrs;
 
-        /**
-         * Constructor.
-         *
-         * @param attrs Widget attributes.
-         */
-        Widget(Hash);
+        // Methods.
+        public:
+            /**
+             * Constructor.
+             */
+            Widget(void);
 
-        /**
-         * Destructor.
-         */
-        virtual ~Widget(void);
+            /**
+             * Constructor.
+             *
+             * @param attrs Widget attributes.
+             */
+            Widget(Hash);
 
-        /**
-         * Renders the widget using a HIT template.
-         *
-         * @param  hit HIT template to use to render de widget.
-         * @return Rendered widget.
-         */
-        virtual string render(HIT&) = 0;
+            /**
+             * Destructor.
+             */
+            virtual ~Widget(void);
 
-        /**
-         * Renders the widget using a HIT template.
-         *
-         * @param  hit HIT template to use to render de widget.
-         * @return Rendered widget.
-         */
-        virtual operator string(void) const;
-};
+            /**
+             * Renders the widget using a HIT template.
+             *
+             * @param  hit HIT template to use to render de widget.
+             * @return Rendered widget.
+             */
+            virtual string render(HIT&) = 0;
+
+            /**
+             * Renders the widget using a HIT template.
+             *
+             * @param  hit HIT template to use to render de widget.
+             * @return Rendered widget.
+             */
+            virtual operator string(void) const;
+    };
+
+}
 
 #endif

@@ -6,67 +6,71 @@
 #include "hash.h"
 #include <string>
 
-using std::string;
+namespace bife {
 
-/**
- * Hooks vs IT Template Engine.
- *
- * Hooks vs IT (HIT) is a simple template implementation, based on hooks
- * and IT template systems.
- *
- * @todo Implementar buffers?
- */
-class HIT {
-    // Attributes.
-    public:
-        /// Root directory where to search for templates.
-        string root;
-        /// Postfix added to the blockname to convert it to a filename.
-        string postfix;
-        // bool search_path = false
-        // TODO - Para subclases
-        //Hash buffer;
+    using std::string;
 
-    // Methods.
-    protected:
-        /**
-         * Gets file name based on the blockname.
-         *
-         * @param  blockname Name of the block to get the filename.
-         * @return Block's filename.
-         */
-        virtual string getFileName(string);
+    /**
+     * Hooks vs IT Template Engine.
+     *
+     * Hooks vs IT (HIT) is a simple template implementation, based on hooks
+     * and IT template systems.
+     *
+     * @todo Implementar buffers?
+     */
+    class HIT {
+        // Attributes.
+        public:
+            /// Root directory where to search for templates.
+            string root;
+            /// Postfix added to the blockname to convert it to a filename.
+            string postfix;
+            // bool search_path = false
+            // TODO - Para subclases
+            //Hash buffer;
 
-        /**
-         * Gets file content.
-         *
-         * @param  filename Name of the file to get the content.
-         * @return File content.
-         */
-        virtual string getFileContent(string);
+        // Methods.
+        protected:
+            /**
+             * Gets file name based on the blockname.
+             *
+             * @param  blockname Name of the block to get the filename.
+             * @return Block's filename.
+             */
+            virtual string getFileName(string);
 
-    public:
-        /**
-         * Constructor.
-         *
-         * @param root    Root directory from where to get the templates.
-         * @param postfix Postfix of the template files.
-         */
-        HIT(string = string("."), string = string(".tpl"));
+            /**
+             * Gets file content.
+             *
+             * @param  filename Name of the file to get the content.
+             * @return File content.
+             */
+            virtual string getFileContent(string);
 
-        /**
-         * Destructor.
-         */
-        virtual ~HIT(void);
+        public:
+            /**
+             * Constructor.
+             *
+             * @param root    Root directory from where to get the templates.
+             * @param postfix Postfix of the template files.
+             */
+            HIT(string = string("."), string = string(".tpl"));
 
-        /**
-         * Parses a block replacing keys with values in the hash.
-         *
-         * @param  blockname Name of the block to parse.
-         * @param  vars      Hash containing the variable names and their values.
-         * @return Parsed block with variables replaced.
-         */
-        string parse(string, Hash&);
-};
+            /**
+             * Destructor.
+             */
+            virtual ~HIT(void);
+
+            /**
+             * Parses a block replacing keys with values in the hash.
+             *
+             * @param  blockname Name of the block to parse.
+             * @param  vars      Hash containing the variable names and their values.
+             * @return Parsed block with variables replaced.
+             */
+            string parse(string, Hash&);
+    };
+
+}
 
 #endif

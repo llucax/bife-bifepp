@@ -2,6 +2,8 @@
 
 #include "ghit.h"
 
+using namespace bife;
+
 #ifdef DEBUG
 #include <iostream>
 using std::cerr;

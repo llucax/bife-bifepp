@@ -8,6 +8,7 @@
 #include "chit.h"
 
 using namespace std;
+using namespace bife;
 
 int main(void) {
     const string indent = "    ";

@@ -2,6 +2,8 @@
 
 #include "chit.h"
 
+using namespace bife;
+
 #ifdef DEBUG
 #include <iostream>
 using std::cerr;

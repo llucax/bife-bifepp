@@ -6,6 +6,7 @@
 
 using std::ifstream;
 using std::stringbuf;
+using namespace bife;
 
 #ifdef DEBUG
 #include <iostream>

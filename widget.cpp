@@ -4,6 +4,7 @@
 #include <sstream>
 
 using std::stringstream;
+using namespace bife;
 
 #ifdef DEBUG
 #include <iostream>

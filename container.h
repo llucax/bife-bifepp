@@ -9,73 +9,77 @@
 #include <vector>
 #include <string>
 
-using std::string;
+namespace bife {
 
-/**
- * Base Container Class.
- *
- * @todo 
- */
-class Container: public Widget {
-    // Typedefs
-    protected:
-        typedef std::vector<Widget> Content;
+    using std::string;
 
-    // Attributes.
-    protected:
-        /// Content.
-        Content content;
+    /**
+     * Base Container Class.
+     *
+     * @todo 
+     */
+    class Container: public Widget {
+        // Typedefs
+        protected:
+            typedef std::vector<Widget> Content;
 
-    // Methods.
-    public:
-        /**
-         * Constructor.
-         */
-        Container(void);
+        // Attributes.
+        protected:
+            /// Content.
+            Content content;
 
-        /**
-         * Constructor.
-         *
-         * @param attrs Widget attributes.
-         */
-        Container(Hash);
+        // Methods.
+        public:
+            /**
+             * Constructor.
+             */
+            Container(void);
 
-        /**
-         * Constructor.
-         *
-         * @param attrs   Widget attributes.
-         * @param content Content of the widget.
-         */
-        Container(Hash, Widget&);
+            /**
+             * Constructor.
+             *
+             * @param attrs Widget attributes.
+             */
+            Container(Hash);
 
-        /**
-         * Constructor.
-         *
-         * @param content Content of the widget.
-         * @param attrs   Widget attributes.
-         */
-        Container(Widget&, Hash);
+            /**
+             * Constructor.
+             *
+             * @param attrs   Widget attributes.
+             * @param content Content of the widget.
+             */
+            Container(Hash, Widget&);
 
-        /**
-         * Destructor.
-         */
-        virtual ~Container(void);
+            /**
+             * Constructor.
+             *
+             * @param content Content of the widget.
+             * @param attrs   Widget attributes.
+             */
+            Container(Widget&, Hash);
 
-        /**
-         * Renders the widget using a HIT template.
-         *
-         * @param  hit HIT template to use to render de widget.
-         * @return Rendered widget.
-         */
-        virtual string render(HIT&) = 0;
+            /**
+             * Destructor.
+             */
+            virtual ~Container(void);
 
-        /**
-         * Renders the widget using a HIT template.
-         *
-         * @param  hit HIT template to use to render de widget.
-         * @return Rendered widget.
-         */
-        string renderContent(HIT&);
-};
+            /**
+             * Renders the widget using a HIT template.
+             *
+             * @param  hit HIT template to use to render de widget.
+             * @return Rendered widget.
+             */
+            virtual string render(HIT&) = 0;
+
+            /**
+             * Renders the widget using a HIT template.
+             *
+             * @param  hit HIT template to use to render de widget.
+             * @return Rendered widget.
+             */
+            string renderContent(HIT&);
+    };
+
+}
 
 #endif

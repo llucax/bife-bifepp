@@ -10,74 +10,78 @@
 #include <vector>
 #include <string>
 
-using std::string;
+namespace bife {
 
-/**
- * Base Fallback Widget.
- *
- * @todo 
- */
-class Fallback: public Container {
-    // Attributes.
-    protected:
-        /// Root widget.
-        Widget* root;
+    using std::string;
 
-    // Methods.
-    public:
-        /**
-         * Constructor.
-         *
-         * @param name    Name of the widget.
-         */
-        Fallback(string);
+    /**
+     * Base Fallback Widget.
+     *
+     * @todo 
+     */
+    class Fallback: public Container {
+        // Attributes.
+        protected:
+            /// Root widget.
+            Widget* root;
 
-        /**
-         * Constructor.
-         *
-         * @param name    Name of the widget.
-         * @param attrs   Widget attributes.
-         */
-        Fallback(string, Hash);
+        // Methods.
+        public:
+            /**
+             * Constructor.
+             *
+             * @param name    Name of the widget.
+             */
+            Fallback(string);
 
-        /**
-         * Constructor.
-         *
-         * @param name    Name of the widget.
-         * @param attrs   Widget attributes.
-         * @param content Content of the widget.
-         */
-        Fallback(string, Hash, Widget&);
+            /**
+             * Constructor.
+             *
+             * @param name    Name of the widget.
+             * @param attrs   Widget attributes.
+             */
+            Fallback(string, Hash);
 
-        /**
-         * Constructor.
-         *
-         * @param name    Name of the widget.
-         * @param content Content of the widget.
-         */
-        Fallback(string, Widget&);
+            /**
+             * Constructor.
+             *
+             * @param name    Name of the widget.
+             * @param attrs   Widget attributes.
+             * @param content Content of the widget.
+             */
+            Fallback(string, Hash, Widget&);
 
-        /**
-         * Constructor.
-         *
-         * @param name    Name of the widget.
-         * @param content Content of the widget.
-         * @param attrs   Widget attributes.
-         */
-        Fallback(string, Widget&, Hash);
+            /**
+             * Constructor.
+             *
+             * @param name    Name of the widget.
+             * @param content Content of the widget.
+             */
+            Fallback(string, Widget&);
 
-        /**
-         * Destructor.
-         */
-        virtual ~Fallback(void);
+            /**
+             * Constructor.
+             *
+             * @param name    Name of the widget.
+             * @param content Content of the widget.
+             * @param attrs   Widget attributes.
+             */
+            Fallback(string, Widget&, Hash);
 
-        /**
-         * Renders the widget using a HIT template.
-         *
-         * @param  hit HIT template to use to render de widget.
-         * @return Rendered widget.
-         */
-        virtual string render(HIT&) = 0;
-};
+            /**
+             * Destructor.
+             */
+            virtual ~Fallback(void);
+
+            /**
+             * Renders the widget using a HIT template.
+             *
+             * @param  hit HIT template to use to render de widget.
+             * @return Rendered widget.
+             */
+            virtual string render(HIT&) = 0;
+    };
+
+}
 
 #endif
