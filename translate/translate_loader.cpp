@@ -14,19 +14,18 @@ using bife::Hash;
 using std::string;
 
 /**
- * Fallback constructor.
+ * Widget constructor.
  *
- * @param  classname  Name of the class to construct.
- * @param  widgetname Name of the widget to construct.
- * @param  attrs      Widget's attributes.
- * @return A new Fallback widget.
+ * @param  name  Name of the widget to construct.
+ * @param  attrs Widget's attributes.
+ * @return A new Widget.
  */
 extern "C"
-Fallback* fallback_constructor(const string& classname, const string& widgetname, const Hash& attrs) {
-    string cn = classname;
+Widget* bife_widget_constructor(const string& name, const Hash& attrs) {
+    string cn = name;
     std::transform(cn.begin(), cn.end(), cn.begin(), std::tolower);
     if (cn == "translate") {
-        return new Translate(widgetname, attrs);
+        return new Translate(attrs);
     } else {
         return NULL;
     }
@@ -38,6 +37,6 @@ Fallback* fallback_constructor(const string& classname, const string& widgetname
  * @param w The widget to destroy.
  */
 extern "C"
-void widget_destructor(Widget* w) {
+void bife_widget_destructor(Widget* w) {
 	    delete w;
 }

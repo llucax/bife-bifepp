@@ -24,44 +24,38 @@ namespace bife {
         public:
             /**
              * Constructor.
-             *
-             * @param name    Name of the widget.
              */
-            Translate(const string&);
+            Translate(void);
 
             /**
              * Constructor.
              *
-             * @param name    Name of the widget.
              * @param attrs   Widget attributes.
              */
-            Translate(const string&, const Hash&);
+            Translate(const Hash&);
 
             /**
              * Constructor.
              *
-             * @param name    Name of the widget.
              * @param attrs   Widget attributes.
              * @param content Content of the widget.
              */
-            Translate(const string&, const Hash&, Widget*);
+            Translate(const Hash&, Widget*);
 
             /**
              * Constructor.
              *
-             * @param name    Name of the widget.
              * @param content Content of the widget.
              */
-            Translate(const string&, Widget*);
+            //Translate(Widget*);
 
             /**
              * Constructor.
              *
-             * @param name    Name of the widget.
              * @param content Content of the widget.
              * @param attrs   Widget attributes.
              */
-            Translate(const string&, Widget*, const Hash&);
+            Translate(Widget*, const Hash&);
 
             /**
              * Destructor.

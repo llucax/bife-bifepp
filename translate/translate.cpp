@@ -12,35 +12,30 @@ using std::cerr;
 using std::endl;
 #endif
 
-Translate::Translate(const string& name): Fallback(name) {
+Translate::Translate(void) {
 #ifdef DEBUG
-    cerr << "In Translate::Translate(name = '" << name << "');" << endl;
+    cerr << "In Translate::Translate();" << endl;
 #endif
 }
 
-Translate::Translate(const string& name, const Hash& attrs): Fallback(name, attrs) {
+Translate::Translate(const Hash& attrs): Fallback(attrs) {
 #ifdef DEBUG
-    cerr << "In Translate::Translate(name = '" << name
-        << "', attrs = {" /* TODO << attrs */ << "});" << endl;
+    cerr << "In Translate::Translate(attrs = {" /* TODO << attrs */ << "});" << endl;
 #endif
 }
 
-Translate::Translate(const string& name, const Hash& attrs, Widget* content):
-        Fallback(name, attrs, content) {
+Translate::Translate(const Hash& attrs, Widget* content): Fallback(attrs, content) {
     // FIXME - this->content.push_back(content);
 #ifdef DEBUG
-    cerr << "In Translate::Translate(name = '" << name
-        << "', attrs = {" /* TODO << attrs */
+    cerr << "In Translate::Translate(attrs = {" /* TODO << attrs */
         << "}, content = {" /* TODO << content */ << "});" << endl;
 #endif
 }
 
-Translate::Translate(const string& name, Widget* content, const Hash& attrs):
-        Fallback(name, content, attrs) {
+Translate::Translate(Widget* content, const Hash& attrs): Fallback(content, attrs) {
     // FIXME - this->content.push_back(content);
 #ifdef DEBUG
-    cerr << "In Translate::Translate(name = '" << name
-        << "', content = {" /* TODO << content */
+    cerr << "In Translate::Translate(content = {" /* TODO << content */
         << "}, attrs = {" /* TODO << attrs */ << "});" << endl;
 #endif
 }

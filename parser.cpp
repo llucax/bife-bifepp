@@ -45,7 +45,17 @@ void Parser::on_start_element(const string& name, const AttributeMap& attrs) {
     if (fbClass.empty()) {
         throw string("Widget '") + name + "' not found and now using a fallback class.";
     } else {
-        stack.push(fbNew(fbClass, name, attrs));
+        Fallback* fb;
+        try {
+            fb = dynamic_cast<Fallback*>(fbNew(fbClass, attrs));
+            if (!fb) {
+                throw string("Fallback widget '") + fbClass + " not found!";
+            }
+        } catch (...) {
+            throw fbClass + " is not a Fallback Widget!";
+        }
+        fb->name = name;
+        stack.push(fb);
     }
 }
 
@@ -160,8 +170,8 @@ Parser::Parser(const string& fallback): fbNew(NULL), fbDel(NULL), root(NULL) {
         if (!dlh) {
             throw string("No se puede cargar el plug-in: ") + dlerror();
         }
-        fbNew = (Fallback::Constructor*)dlsym(dlh, "fallback_constructor");
-        fbDel = (Widget::Destructor*)dlsym(dlh, "widget_destructor");
+        fbNew = (Widget::Constructor*)dlsym(dlh, "bife_widget_constructor");
+        fbDel = (Widget::Destructor*)dlsym(dlh, "bife_widget_destructor");
         if (!fbNew || !fbDel) {
             throw string("No se puede cargar el creador del plug-in: ") + dlerror();
         }

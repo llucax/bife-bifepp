@@ -23,7 +23,7 @@ namespace bife {
         // Typedefs
         public:
             /// Fallback constructor function prototype.
-            typedef Fallback* Constructor(const string&, const string&, const Hash&);
+            //typedef Fallback* Constructor(const string&, const string&, const Hash&);
 
         // Attributes.
         public:
@@ -37,7 +37,7 @@ namespace bife {
              *
              * @param name    Name of the widget.
              */
-            Fallback(const string&);
+            Fallback(void);
 
             /**
              * Constructor.
@@ -45,7 +45,7 @@ namespace bife {
              * @param name    Name of the widget.
              * @param attrs   Widget attributes.
              */
-            Fallback(const string&, const Hash&);
+            Fallback(const Hash&);
 
             /**
              * Constructor.
@@ -54,7 +54,7 @@ namespace bife {
              * @param attrs   Widget attributes.
              * @param content Content of the widget.
              */
-            Fallback(const string&, const Hash&, Widget*);
+            Fallback(const Hash&, Widget*);
 
             /**
              * Constructor.
@@ -62,7 +62,7 @@ namespace bife {
              * @param name    Name of the widget.
              * @param content Content of the widget.
              */
-            Fallback(const string&, Widget*);
+            //Fallback(Widget*);
 
             /**
              * Constructor.
@@ -71,7 +71,7 @@ namespace bife {
              * @param content Content of the widget.
              * @param attrs   Widget attributes.
              */
-            Fallback(const string&, Widget*, const Hash&);
+            Fallback(Widget*, const Hash&);
 
             /**
              * Destructor.

@@ -12,36 +12,30 @@ using std::cerr;
 using std::endl;
 #endif
 
-Fallback::Fallback(const string& name): name(name) {
+Fallback::Fallback(void) {
 #ifdef DEBUG
-    cerr << "In Fallback::Fallback(name = '" << name << "');" << endl;
+    cerr << "In Fallback::Fallback();" << endl;
 #endif
 }
 
-Fallback::Fallback(const string& name, const Hash& attrs):
-        Container(attrs), name(name) {
+Fallback::Fallback(const Hash& attrs): Container(attrs) {
 #ifdef DEBUG
-    cerr << "In Fallback::Fallback(name = '" << name
-        << "', attrs = {" /* TODO << attrs */ << "});" << endl;
+    cerr << "In Fallback::Fallback(attrs = {" /* TODO << attrs */ << "});" << endl;
 #endif
 }
 
-Fallback::Fallback(const string& name, const Hash& attrs, Widget* content):
-        Container(attrs, content), name(name) {
+Fallback::Fallback(const Hash& attrs, Widget* content): Container(attrs, content) {
     // FIXME - this->content.push_back(content);
 #ifdef DEBUG
-    cerr << "In Fallback::Fallback(name = '" << name
-        << "', attrs = {" /* TODO << attrs */
+    cerr << "In Fallback::Fallback(attrs = {" /* TODO << attrs */
         << "}, content = {" /* TODO << content */ << "});" << endl;
 #endif
 }
 
-Fallback::Fallback(const string& name, Widget* content, const Hash& attrs):
-        Container(content, attrs), name(name) {
+Fallback::Fallback(Widget* content, const Hash& attrs): Container(content, attrs) {
     // FIXME - this->content.push_back(content);
 #ifdef DEBUG
-    cerr << "In Fallback::Fallback(name = '" << name
-        << "', content = {" /* TODO << content */
+    cerr << "In Fallback::Fallback(content = {" /* TODO << content */
         << "}, attrs = {" /* TODO << attrs */ << "});" << endl;
 #endif
 }

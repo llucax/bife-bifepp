@@ -11,8 +11,6 @@
 
 namespace bife {
 
-    using std::string;
-
     /**
      * Base Container Class.
      *
