@@ -6,6 +6,7 @@
 #include "hit.h"
 #include "ghit.h"
 #include "chit.h"
+#include "string.h"
 
 using namespace std;
 using namespace bife;
@@ -38,7 +39,7 @@ int main(void) {
 
     cout << "CHIT example:" << endl;
     cout << "=============" << endl;
-    CHIT c("././././././", ".tpl.html");
+    CHIT chit("././././././", ".tpl.html");
     const int n = 65;
     for (int i = n; i < (n+10); i++) {
         stringstream ssi, ssc;
@@ -46,6 +47,18 @@ int main(void) {
         ssc << char(i);
         vars["NOMBRE"] = "Chit gay " + ssc.str();
         vars["EDAD"]   = ssi.str();
-        cout << indent << c.parse("test", vars) << endl;
+        cout << indent << chit.parse("test", vars) << endl;
     }
+
+    cout << "bife::String example:" << endl;
+    cout << "=====================" << endl;
+    string s = "std::string";
+    String a("Un string");
+    String b = "Otro string";
+    //String c = s;
+    cout << "s: '" << s << "' - "
+        << "a: '" << a << "' - "
+        << "b: '" << b << endl;
+    cout << "a.render(): '" << a.render(chit) << "' - "
+        << "b.render(): '" << b.render(chit) << endl;
 }
