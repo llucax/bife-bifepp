@@ -1,13 +1,13 @@
 // vim: set expandtab tabstop=4 shiftwidth=4:
 
-#ifndef _BIFE_GHIT_H_
-#define _BIFE_GHIT_H_
+#ifndef BIFE_GHIT_H
+#define BIFE_GHIT_H
 
-#include <string>
-#include <stack>
 #include "hit.h"
+#include <stack>
+#include <string>
 
-using namespace std;
+using std::string;
 
 /**
  * Group enabled HIT.
@@ -18,10 +18,15 @@ using namespace std;
  * the root directory.
  */
 class GHIT: public HIT {
+    // Typedefs.
+    protected:
+        /// Group stack.
+        typedef std::stack<string> GroupStack;
+
     // Attributes.
     protected:
         /// Group stack.
-        stack<string> group;
+        GroupStack group;
 
     // Methods.
     protected:
@@ -41,7 +46,12 @@ class GHIT: public HIT {
          * @param postfix Postfix of the template files.
          * @param group   Starting group.
          */
-        GHIT(string = ".", string = ".tpl", string = "");
+        GHIT(string = string("."), string = string(".tpl"), string = string(""));
+
+        /**
+         * Destructor.
+         */
+        virtual ~GHIT(void);
 
         /**
          * Starts working with a new group of templates.

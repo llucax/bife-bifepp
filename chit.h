@@ -1,13 +1,13 @@
 // vim: set expandtab tabstop=4 shiftwidth=4:
 
-#ifndef _BIFE_CHIT_H_
-#define _BIFE_CHIT_H_
+#ifndef BIFE_CHIT_H
+#define BIFE_CHIT_H
 
-#include <string>
-#include "hash.h"
 #include "ghit.h"
+#include "hash.h"
+#include <string>
 
-using namespace std;
+using std::string;
 
 /**
  * Cache enabled GHIT.
@@ -43,7 +43,12 @@ class CHIT: public GHIT {
          * @param postfix Postfix of the template files.
          * @param group   Starting group.
          */
-        CHIT(string = ".", string = ".tpl", string = "");
+        CHIT(string = string("."), string = string(".tpl"), string = string(""));
+
+        /**
+         * Destructor.
+         */
+        virtual ~CHIT(void);
 };
 
 #endif

@@ -1,10 +1,29 @@
 // vim: set expandtab tabstop=4 shiftwidth=4:
 
 #include "hit.h"
+#include <fstream>
+#include <sstream>
+
+using std::ifstream;
+using std::stringbuf;
 
 #ifdef DEBUG
 #include <iostream>
+using std::cerr;
+using std::endl;
 #endif
+
+HIT::HIT(string root, string postfix): root(root), postfix(postfix) {
+#ifdef DEBUG
+    cerr << "In HIT::HIT(root = '" << root << "', postfix = '" << postfix << "')" << endl;
+#endif
+}
+
+HIT::~HIT(void) {
+#ifdef DEBUG
+    cerr << "In HIT destructor." << endl;
+#endif
+}
 
 string HIT::getFileName(string blockname) {
     return string(root + '/' + blockname + postfix);
@@ -21,28 +40,27 @@ string HIT::getFileContent(string filename) {
         return buff.str();
     }
     while (in.get(buff)) {
-        in.ignore();
+        buff.sputc(in.get());
     }
     in.close();
     return buff.str();
 }
 
-HIT::HIT(string root, string postfix): root(root), postfix(postfix) {}
-
 string HIT::parse(string blockname, Hash& vars) {
+    int pos;
+    string key;
     string content = getFileContent(getFileName(blockname));
     for (Hash::iterator i = vars.begin(); i != vars.end(); i++) {
-        string key = "{" + i->first +  "}";
-        int pos = -1;
+        key = "{" + i->first +  "}";
         while ((pos = content.find(key)) != -1) {
-#ifdef DEBUG
-            cout << "Founded at pos " << pos << ", key '" << key << "' (len: "
+#ifdef DEBUG2
+            cerr << "Founded at pos " << pos << ", key '" << key << "' (len: "
                 << key.length() << "). Will be replaced with '" << i->second
                 << "'" << endl;
 #endif
             content.replace(pos, key.length(), i->second);
-#ifdef DEBUG
-            cout << "New content: " << content << endl << endl << endl;
+#ifdef DEBUG2
+            cerr << "New content: " << content << endl << endl << endl;
 #endif
         }
     }

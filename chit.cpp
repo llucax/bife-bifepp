@@ -2,8 +2,23 @@
 
 #include "chit.h"
 
-CHIT::CHIT(string root, string postfix, string group) {
-    GHIT(root, postfix, group);
+#ifdef DEBUG
+#include <iostream>
+using std::cerr;
+using std::endl;
+#endif
+
+CHIT::CHIT(string root, string postfix, string group): GHIT(root, postfix, group) {
+#ifdef DEBUG
+    cerr << "In CHIT::CHIT(root = '" << root << "', postfix = '" << postfix
+        << "', group = '" << group << "');" << endl;
+#endif
+}
+
+CHIT::~CHIT(void) {
+#ifdef DEBUG
+    cerr << "In CHIT destructor." << endl;
+#endif
 }
 
 string CHIT::getFileContent(string filename) {

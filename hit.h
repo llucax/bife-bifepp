@@ -1,14 +1,12 @@
 // vim: set expandtab tabstop=4 shiftwidth=4:
 
-#ifndef _BIFE_HIT_H_
-#define _BIFE_HIT_H_
+#ifndef BIFE_HIT_H
+#define BIFE_HIT_H
 
-#include <string>
-#include <fstream>
-#include <sstream>
 #include "hash.h"
+#include <string>
 
-using namespace std;
+using std::string;
 
 /**
  * Hooks vs IT Template Engine.
@@ -54,7 +52,12 @@ class HIT {
          * @param root    Root directory from where to get the templates.
          * @param postfix Postfix of the template files.
          */
-        HIT(string = ".", string = ".tpl");
+        HIT(string = string("."), string = string(".tpl"));
+
+        /**
+         * Destructor.
+         */
+        virtual ~HIT(void);
 
         /**
          * Parses a block replacing keys with values in the hash.

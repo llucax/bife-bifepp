@@ -2,16 +2,31 @@
 
 #include "ghit.h"
 
-GHIT::GHIT(string root, string postfix, string group) {
-    HIT(root, postfix);
+#ifdef DEBUG
+#include <iostream>
+using std::cerr;
+using std::endl;
+#endif
+
+GHIT::GHIT(string root, string postfix, string group): HIT(root, postfix) {
+#ifdef DEBUG
+    cerr << "In GHIT::GHIT(root = '" << root << "', postfix = '" << postfix
+        << "', group = '" << group << "');" << endl;
+#endif
     this->group.push(group);
+}
+
+GHIT::~GHIT(void) {
+#ifdef DEBUG
+    cerr << "In GHIT destructor." << endl;
+#endif
 }
 
 string GHIT::getFileName(string blockname) {
     return string(root + '/' + group.top() + '/' + blockname + postfix);
 }
 
-void GHIT::pushGroup(string group = "") {
+void GHIT::pushGroup(string group) {
     this->group.push(group);
 }
 

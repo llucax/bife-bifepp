@@ -7,6 +7,8 @@
 #include "ghit.h"
 #include "chit.h"
 
+using namespace std;
+
 int main(void) {
     const string indent = "    ";
     Hash vars;
@@ -22,7 +24,7 @@ int main(void) {
     cout << "=============" << endl;
     vars["NOMBRE"] = "Pedro";
     vars["EDAD"]   = "26";
-    GHIT g;
+    GHIT g("./././");
     cout << "We are using the default group: '" << g.getGroup() << "'." << endl;
     cout << indent << g.parse("test", vars) << endl;
     g.pushGroup("tpldir");
@@ -35,7 +37,7 @@ int main(void) {
 
     cout << "CHIT example:" << endl;
     cout << "=============" << endl;
-    CHIT c;
+    CHIT c("././././././", ".tpl.html");
     const int n = 65;
     for (int i = n; i < (n+10); i++) {
         stringstream ssi, ssc;
