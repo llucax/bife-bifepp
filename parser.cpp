@@ -1,5 +1,9 @@
 // vim: set expandtab tabstop=4 shiftwidth=4:
 
+// FIXME - ver tema de fallback.
+#include "translate.h"
+
+#include "string.h"
 #include "parser.h"
 #include <sstream>
 
@@ -37,32 +41,48 @@ void Parser::on_start_element(const string& name, const AttributeMap& attrs) {
     }
     cerr  << "]);" << endl;
 #endif
-/*
-    stringstream out;
-    out << "widget = attributes: [";
-    if (attrs.size()) {
-        Hash::const_iterator last = attrs.end();
-        last--;
-        for (Hash::const_iterator i = attrs.begin(); i != last; i++) { //last; i++) {
-            out << i->first << ": '" << i->second << "', ";
-        }
-        out << last->first << ": '" << last->second << "'";
-    }
-    out << "]);" << endl;
-    return out.str();
-*/
+    stack.push(new Translate(name, attrs));
 }
 
 void Parser::on_end_element(const string& name) {
 #ifdef DEBUG
     cerr << "In Parser::on_end_element('" << name << "');" << endl;
 #endif
+    Widget* cur = stack.top();
+    stack.pop();
+    // If is the last widget, it's the root widget.
+    if (stack.empty()) {
+        root = cur;
+    // If is not the last widget, we add it as content of his parent.
+    } else {
+        Container* par = dynamic_cast<Container*>(stack.top());
+        // If the parent is a Container, we add curent widget as content.
+        if (par) {
+            par->append(cur);
+        // If not, we raise an exception TODO
+        } else {
+            throw "Trying to add content to a non-container widget.";
+        }
+    }
 }
 
 void Parser::on_characters(const string& chars) {
 #ifdef DEBUG
     cerr << "In Parser::on_characters('" << chars << "');" << endl;
 #endif
+    if (!stack.empty()) {
+        Container* cur = dynamic_cast<Container*>(stack.top());
+        // If we are in a Container, we add curent string widget as content.
+        if (cur) {
+            cur->append(new String(chars));
+        // If not, we raise an exception TODO
+        } else {
+            throw "Trying to add content to a non-container widget.";
+        }
+    } else {
+        // FIXME - investigar si tiene sentido.
+        throw "Characters with no tags!!!?!?!?!";
+    }
 }
 
 void Parser::on_comment(const string& text) {

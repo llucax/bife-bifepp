@@ -25,14 +25,14 @@ namespace bife {
             typedef std::stack<Widget*> WidgetStack;
 
         // Attributes.
-        public:
-            /// Widget attributes.
-            Widget* root;
-
+        protected:
             /// Stack TODO.
             WidgetStack stack;
 
             // TODO Fallback.
+        public:
+            /// Widget attributes.
+            Widget* root;
 
         // Methods.
         protected:
