@@ -20,6 +20,11 @@ namespace bife {
      * @todo 
      */
     class Fallback: public Container {
+        // Typedefs
+        public:
+            /// Fallback constructor function prototype.
+            typedef Fallback* Constructor(const string&, const string&, const Hash&);
+
         // Attributes.
         public:
             /// Root widget.

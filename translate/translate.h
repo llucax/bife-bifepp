@@ -3,10 +3,10 @@
 #ifndef BIFE_TRANSLATE_H
 #define BIFE_TRANSLATE_H
 
-#include "fallback.h"
-#include "widget.h"
-#include "hit.h"
-#include "hash.h"
+#include "../libbife/fallback.h"
+#include "../libbife/widget.h"
+#include "../libbife/hit.h"
+#include "../libbife/hash.h"
 #include <vector>
 #include <string>
 

@@ -3,16 +3,13 @@
 #ifndef BIFE_PARSER_H
 #define BIFE_PARSER_H
 
-#include "hit.h"
-#include "hash.h"
-#include "widget.h"
+#include "libbife/hit.h"
+#include "libbife/hash.h"
+#include "libbife/widget.h"
+#include "libbife/fallback.h"
 #include <libxml++/libxml++.h>
 #include <string>
 #include <stack>
-
-// FIXME - Poner esto en un lugar más bonito.
-typedef bife::Widget* create_t(const std::string& name, const bife::Hash&);
-typedef void destroy_t(bife::Widget*);
 
 namespace bife {
 
@@ -21,24 +18,35 @@ namespace bife {
     /**
      * Base Widget Class.
      *
-     * @todo 
+     * @todo Better plug-in support. Cleanning (a lot).
+     * @todo Try to free some memeory :)
      */
     class Parser: public xmlpp::SaxParser {
         // Typedefs.
         protected:
+            /// Stack of widget pointers.
             typedef std::stack<Widget*> WidgetStack;
 
         // Attributes.
         protected:
-            /// Stack TODO.
+            /**
+             * Widget stack.
+             * This is the stack of widgets to know what widget is the parser
+             * proccesing.
+             */
             WidgetStack stack;
 
-            // TODO Fallback.
-            create_t* fb_create;
-            destroy_t* fb_destroy;
+            /// Fallback constructor function pointer.
+            Fallback::Constructor* fbNew;
+
+            /// Fallback destructor function pointer.
+            Widget::Destructor* fbDel;
+
+            /// Fallback class name.
+            string fbClass;
 
         public:
-            /// Widget attributes.
+            /// Widget attributes (FIXME - this must be protected?).
             Widget* root;
 
         // Methods.
@@ -121,14 +129,14 @@ namespace bife {
             /**
              * Constructor.
              */
-            Parser(void);
+            //Parser(void);
 
             /**
              * Constructor.
              *
-             * @param fallback Fallback.
+             * @param fallback Fallback class name.
              */
-            //Parser(const Fallback&); TODO
+            Parser(const string& = "");
 
             /**
              * Destructor.

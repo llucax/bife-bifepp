@@ -1,14 +1,14 @@
 // vim: set expandtab tabstop=4 shiftwidth=4:
 
-#include "widget.h"
-#include "container.h"
-#include "fallback.h"
-#include "string.h"
+#include "libbife/widget.h"
+#include "libbife/container.h"
+#include "libbife/fallback.h"
+#include "libbife/string.h"
 #include "parser.h"
-#include <sstream>
+//#include <sstream>
 #include <dlfcn.h>
 
-using std::stringstream;
+//using std::stringstream;
 using namespace bife;
 
 #ifdef DEBUG
@@ -42,7 +42,11 @@ void Parser::on_start_element(const string& name, const AttributeMap& attrs) {
     }
     cerr  << "]);" << endl;
 #endif
-    stack.push(fb_create(name, attrs));
+    if (fbClass.empty()) {
+        throw string("Widget '") + name + "' not found and now using a fallback class.";
+    } else {
+        stack.push(fbNew(fbClass, name, attrs));
+    }
 }
 
 void Parser::on_end_element(const string& name) {
@@ -122,11 +126,12 @@ void Parser::on_validity_warning(const string& warn) {
 #endif
 }
 
-Parser::Parser(void): fb_create(NULL), fb_destroy(NULL), root(NULL) {
+/*
+Parser::Parser(void): fallbackConstructor(NULL), fallbackDestructor(NULL), root(NULL) {
 #ifdef DEBUG
     cerr << "In Parser::Parser();" << endl;
 #endif
-    void* fb = dlopen("./translate.so", RTLD_NOW | RTLD_GLOBAL); // TODO - mas rapido: RTLD_LAZY);
+    void* fb = dlopen("./translate.so", RTLD_LAZY); // XXX - así anda: RTLD_NOW | RTLD_GLOBAL);
     if (!fb) {
         throw string("No se puede cargar el plug-in: ") + dlerror();
     }
@@ -136,12 +141,33 @@ Parser::Parser(void): fb_create(NULL), fb_destroy(NULL), root(NULL) {
         throw string("No se puede cargar el creador del plug-in: ") + dlerror();
     }
 }
+*/
 
-//Parser::Parser(const Hash& attrs): attrs(attrs) {
-//#ifdef DEBUG
-//    cerr << "In Parser::Parser(attrs = {" /* TODO << attrs */ << "});" << endl;
-//#endif
-//}
+Parser::Parser(const string& fallback): fbNew(NULL), fbDel(NULL), root(NULL) {
+#ifdef DEBUG
+    cerr << "In Parser::Parser(fallback = '" << fallback << "');" << endl;
+#endif
+    if (!fallback.empty()) {
+        string::size_type pos = fallback.find(".");
+        if (pos == string::npos) {
+            throw string("Fallback module not specified in fallback name: ") + fallback;
+        }
+        fbClass = fallback.substr(pos + 1, fallback.length() - 1);
+        // Opens the fallback module.
+        string modules_dir = "translate";
+        string fb_module = modules_dir + "/" + fallback.substr(0, pos) + ".so";
+        void* dlh = dlopen(fb_module.c_str(), RTLD_LAZY);
+        if (!dlh) {
+            throw string("No se puede cargar el plug-in: ") + dlerror();
+        }
+        fbNew = (Fallback::Constructor*)dlsym(dlh, "fallback_constructor");
+        fbDel = (Widget::Destructor*)dlsym(dlh, "widget_destructor");
+        if (!fbNew || !fbDel) {
+            throw string("No se puede cargar el creador del plug-in: ") + dlerror();
+        }
+        // TODO - CLOSE dl handler, destroy objects.
+    }
+}
 
 Parser::~Parser(void) {
 #ifdef DEBUG

@@ -17,6 +17,13 @@ namespace bife {
      * @todo 
      */
     class Widget {
+        // Typedefs
+        public:
+            /// Widget constructor function prototype.
+            typedef Widget* Constructor(const string&, const Hash&);
+            /// Widget destructor function prototype.
+            typedef void Destructor(Widget*);
+
         // Attributes.
         public:
             /// Widget attributes.

@@ -21,7 +21,7 @@
         Los objetivos de BIFE son estos (en orden de importancia):
         <ul>
             <li>BIFE debe ser rápido.</li>
-            <li>BIFE debe ser simple.</li>
+	    <li>BIFE debe ser simple.</li>
             <li>BIFE debe ser modular.</li>
             <li>BIFE debe ser fácil para el creador de contenidos (XML).</li>
         </ul>
